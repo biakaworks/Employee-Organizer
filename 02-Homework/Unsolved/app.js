@@ -10,14 +10,31 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const employees = [];
-const emptyId = [];
+const employeeArray = [];
 
 const employeeQuestions = [
   {
     type: "input",
-    name: "managerName",
-    message: "What is the name of your manager?",
+    name: "name",
+    message: "What is the name?",
+  },
+  {
+    type: "input",
+    name: "id",
+    message: "What is the ID?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is the email?",
+  },
+];
+
+const managerQuestions = [
+  {
+    type: "input",
+    name: "mangerName",
+    message: "What is the name of the manager?",
   },
   {
     type: "input",
@@ -26,13 +43,13 @@ const employeeQuestions = [
   },
   {
     type: "input",
-    name: "managerId",
-    message: "What is the manager's ID?",
+    name: "managerEmail",
+    message: "What is the manager's email?",
   },
   {
     type: "input",
-    name: "managerId",
-    message: "What is the manager's ID?",
+    name: "managerOffice",
+    message: "What is the manager's office number?",
   },
 ];
 
