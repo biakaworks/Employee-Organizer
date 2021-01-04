@@ -1,9 +1,9 @@
 // The Letter Class is responsible for displaying either an underscore or the underlying character for each letter in the word
 class Employee {
-    constructor(myName, myId, myEmail, role = "Employee") {
-        this.name = myName;
-        this.id = myId;
-        this.email = newEmail;
+    constructor(name, id, email, role = "Employee") {
+        this.name = name;
+        this.id = id;
+        this.email = email;
         this.role = role
     }
   
