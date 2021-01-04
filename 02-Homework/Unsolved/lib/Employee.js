@@ -1,10 +1,10 @@
 // The Letter Class is responsible for displaying either an underscore or the underlying character for each letter in the word
 class Employee {
-    constructor(myName, myId, myEmail) {
-        this.name=myName;
-        //e.name=Alice
-        this.id=myId;
-        this.email=newEmail;
+    constructor(myName, myId, myEmail, role = "Employee") {
+        this.name = myName;
+        this.id = myId;
+        this.email = newEmail;
+        this.role = role
     }
   
     // Returns either an underscore or the underlying character depending on `this.visible`
@@ -15,9 +15,16 @@ class Employee {
     }
 
     getRole() {
-        return 'Employee';
+        return this.role;
     }
   
+    getId() {
+      return this.id;
+  }
+  
+    getEmail() {
+    return this.email;
+}
   }
   
   module.exports = Employee;
