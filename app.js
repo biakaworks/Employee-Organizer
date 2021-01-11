@@ -10,7 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-//Ask About Managers
+//Ask About Managers First
 const managerQuestions = [
 
   {
@@ -32,6 +32,20 @@ const managerQuestions = [
     type: "input",
     name: "managerOfficeNumber",
     message: "What is the manager's office number?",
+  },
+];
+
+//Ask Employee Questions 
+const teamQuestions = [
+  {
+    type: "input",
+    name: "addEmployeeQuestions",
+    message: "Do you want to add more employees?",
+    choices: [
+      "Add new Engineers",
+      "Add new Interns",
+      "No more Employees"
+    ]
   },
 ];
 
@@ -84,3 +98,9 @@ const engineerQuestions = [
     message: "Where did the company intern go to school",
   },
 ];
+
+async function prompter(manager, engineers, intern) {
+  inquirer.prompt(teamQuestions).then((answer) => {
+
+  }
+};
