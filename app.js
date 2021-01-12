@@ -102,5 +102,19 @@ const engineerQuestions = [
 async function prompter(manager, engineers, intern) {
   inquirer.prompt(teamQuestions).then((answer) => {
 
+  };
+
+  function start(){
+    //ask trole
+
+    //if role == "Intern"
+      //call internQuestion()
   }
-};
+  function makemanager(){}
+
+  function makeintern(useranswer){
+    //ask for school
+    //ask
+
+  }
+  function makeengineer(){}
