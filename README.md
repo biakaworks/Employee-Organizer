@@ -15,7 +15,7 @@ This application is covered by the Mozilla license.
 - [Tests](#tests)
 - [Email](#email)
 - [GitHub](#gitHub)
-- [Questions](#questions)
+- [Video Example](https://www.youtube.com/watch?v=DcVb4OTfV4U&feature=youtu.be)
 
 ## Installation
 💿 use node and run node app.js and answer a few questions about your employees to build out your Employee Organizer
