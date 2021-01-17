@@ -52,33 +52,23 @@ function start(){
   ])
   .then(answers => {
  console.log(answers);
+
  if(answers.role =="Manager"){
    //role == manager
   managerQuestion(answers)
- }
+ };
+
+ if(answers.role =="Intern"){
+  //role == intern
+ internQuestion(answers)
+};
+
+ if(answers.role =="Engineers"){
+  //role == engineer
+ engineerQuestion(answers)
+};
  
-   
   });
-
-  // .then(answers => {
-  //   console.log(answers);
-  //   if(answers.role =="Interns"){
-  //    internQuestion(answers)
-  //   }
-  // });
-
-  // .then(answers => {
-  //   console.log(answers);
-  //   if(answers.role =="Engineer"){
-  //    engineerQuestion(answers)
-  //   }
-    
-  //       //role == manager
-  //      //mangerQuestions(answers)
-  //    });
- 
-
-
 }
 
 function managerQuestion(answer){
@@ -107,11 +97,7 @@ function managerQuestion(answer){
       start()
     }
    else{
-      //if no more
-      // 3. completed building the team, will create an HTML file displays team rosterprovided by the user. 
-  //call render(employees) 
-  //buildit out on html (convert string)
-    //fs.write file(render(employees) ) to outpathPath
+
     fs.writeFile(outputPath, render(employees), (err) =>
       err
         ? console.log(err)
@@ -124,7 +110,7 @@ function managerQuestion(answer){
 
 }
 
-function internQuestion(answers){
+function internQuestion(answer){
   inquirer
   .prompt([
     {
@@ -141,20 +127,26 @@ function internQuestion(answers){
   .then(internAnswer => {
     console.log(internAnswer)
     //whatschool
-    console.log(internAnswer.myschool)
-    var newIntern = new itern(answer.name, answer.id, answer.email, internAnswer.myschool);
+    console.log(internAnswer.internSchool)
+    var newIntern = new itern(answer.name, answer.id, answer.email, internAnswer.internSchool);
     employees.push(newIntern)
-    //if they say yes - DONE
-      //call start() if no more - Done
-      // 3. completed building the team, will create an HTML file displays team rosterprovided by the user. 
-  //call render(employees) 
-  //buildit out on html (convert string)
-    //fs.write file(render(employees) ) to outpathPath
-  });
+    if(internAnswer.areYouDone == false){
+      start()
+    }
+    else{
+
+    fs.writeFile(outputPath, render(employees), (err) =>
+      err
+        ? console.log(err)
+        : console.log("Success! Thanks for using Employee Generator")
+    );
+  }
+
+});
 
 }
 
-function engineerQuestion(answers){
+function engineerQuestion(answer){
   inquirer
   .prompt([
     {
@@ -170,143 +162,19 @@ function engineerQuestion(answers){
   ])
   .then(engineerAnswer => {
     console.log(engineerAnswer)
-    //whatschool
-    console.log(engineerAnswer.github)
-    var newEngineer = new itern(answer.name, answer.id, answer.email, engineerAnswer.github);
+    console.log(engineerAnswer.gitHub)
+    var newEngineer = new itern(answer.name, answer.id, answer.email, engineerAnswer.gitHub);
     employees.push(newEngineer)
-    //if they say yes
-      //call start()
-    //if no more
-      // 3. completed building the team, will create an HTML file displays team rosterprovided by the user. 
-  //call render(employees) 
-  //buildit out on html (convert string)
-    //fs.write file(render(employees) ) to outpathPath
-    fs.writeFile(filename, employees, (err) =>
+    if(engineerAnswer.areYouDone == false){
+      start()
+    }
+    else{
+
+    fs.writeFile(outputPath, render(employees), (err) =>
       err
         ? console.log(err)
         : console.log("Success! Thanks for buildilng your Employee Files")
-    );
-  });
-
-}
-
-// function prompter(managerQuestions) {
-//   const Manager = new Manager (answers.name, answer.id, answer.email, answer.officeNumber)
-//   employeeList.push(manager);
-// };
-
-// //Ask About Managers First
-// const managerQuestions = [
-
-//   {
-//     type: "input",
-//     name: "ManagerName",
-//     message: "What is the name of the Manager?",
-//   },
-//   {
-//     type: "input",
-//     name: "managerId",
-//     message: "What is the manager's ID?",
-//   },
-//   {
-//     type: "input",
-//     name: "managerEmail",
-//     message: "What is the manager's email?",
-//   },
-//   {
-//     type: "input",
-//     name: "managerOfficeNumber",
-//     message: "What is the manager's office number?",
-//   },
-// ];
-
-//Ask Employee Questions 
-// const teamQuestions = [
-//   {
-//     type: "input",
-//     name: "addEmployeeQuestions",
-//     message: "Do you want to add more employees?",
-//     choices: [
-//       "Add new Engineers",
-//       "Add new Interns",
-//       "No more Employees"
-//     ]
-//   },
-// ];
-
-//Ask about the Engineers
-// const engineerQuestions = [
-
-//   {
-//     type: "input",
-//     name: "engineerName",
-//     message: "What is the name of the engineer?",
-//   },
-//   {
-//     type: "input",
-//     name: "engineerId",
-//     message: "What is the engineer's ID?",
-//   },
-//   {
-//     type: "input",
-//     name: "engineerEmail",
-//     message: "What is the engineer's email?",
-//   },
-//   {
-//     type: "input",
-//     name: "engineerGithub",
-//     message: "What is the engineer's Github account?",
-//   },
-// ];
-
-//Ask about the Interns
-// const engineerQuestions = [
-
-//   {
-//     type: "input",
-//     name: "internName",
-//     message: "What is the name of the intern?",
-//   },
-//   {
-//     type: "input",
-//     name: "internId",
-//     message: "What is the intern's ID?",
-//   },
-//   {
-//     type: "input",
-//     name: "internEmail",
-//     message: "What is the intern's email?",
-//   },
-//   {
-//     type: "input",
-//     name: "internSchool",
-//     message: "Where did the company intern go to school",
-//   },
-// ];
-
-// async function prompter(managerQuestions, engineerQuestions, internQuestions) {
-//   inquirer.prompt(teamQuestions).then((answer) => {};
-
-// I'm trying to figure out how to call upon my "conts" for it to store the answers to the questions above to turn them them in a JSON for the HTML
-
-  // function prompter(managerQuestions) {
-  //   const Manager = new Manager (answers.name, answer.id, answer.email, answer.officeNumber)
-  //   employeeList.push(manager);
-  // };
-
-  // Need to ask if they have another employee
-
-  // function prompter(engineerQuestions) {
-  //   const Engineer = new Engineer (answers.name, answer.id, answer.email, answer.GitHub)
-  //   employeeList.push(engineer);
-  // };
-
-  // // Need to ask if they have another employee
-
-  // function makeintern(internQuestions) {
-  //   const Intern = new Intern (answers.name, answer.id, answer.email, answer.school)
-  //   employeeList.push(intern);
-  // };
-
-  // Need to ask if they have another employee
-start();
+        );
+      } 
+     });
+    }
