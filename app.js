@@ -53,61 +53,73 @@ function start(){
   .then(answers => {
  console.log(answers);
  if(answers.role =="Manager"){
+   //role == manager
   managerQuestion(answers)
  }
  
-     //role == manager
-    //mangerQuestions(answers)
+   
   });
 
-  .then(answers => {
-    console.log(answers);
-    if(answers.role =="Interns"){
-     internQuestion(answers)
-    }
-  });
+  // .then(answers => {
+  //   console.log(answers);
+  //   if(answers.role =="Interns"){
+  //    internQuestion(answers)
+  //   }
+  // });
 
-  .then(answers => {
-    console.log(answers);
-    if(answers.role =="Engineer"){
-     engineerQuestion(answers)
-    }
+  // .then(answers => {
+  //   console.log(answers);
+  //   if(answers.role =="Engineer"){
+  //    engineerQuestion(answers)
+  //   }
     
-        //role == manager
-       //mangerQuestions(answers)
-     });
+  //       //role == manager
+  //      //mangerQuestions(answers)
+  //    });
  
 
 
 }
 
-function mangerQuestion(answers){
+function managerQuestion(answer){
   inquirer
   .prompt([
     {
     type: "input",
-    name: "officeNumber",
+    name: "manOfficeNumber",
     message: "What is your officeNumber?",
   },
   {
     type: "confirm",
     name: "areYouDone",
-    message: "Would you like to add another employee?",
+    message: "Are you done adding employees?",
   },
   ])
   .then(managerAnswer => {
     console.log(managerAnswer)
     //officenumber
-    console.log(managerAnswer.myofficeNumber)
-    var newGuy = new Manager(answer.name, answer.id, answer.email, managerAnswer.officeNumber);
-    employees.push(newGuy)
-    //if they say yes
+    console.log(managerAnswer.manOfficeNumber)
+    var newManager = new Manager(answer.name, answer.id, answer.email, managerAnswer.manOfficeNumber);
+    employees.push(newManager)
+    if(managerAnswer.areYouDone == false){
+      //if they say no
       //call start()
-    //if no more
+      start()
+    }
+   else{
+      //if no more
       // 3. completed building the team, will create an HTML file displays team rosterprovided by the user. 
   //call render(employees) 
   //buildit out on html (convert string)
     //fs.write file(render(employees) ) to outpathPath
+    fs.writeFile(outputPath, render(employees), (err) =>
+      err
+        ? console.log(err)
+        : console.log("Success! Thanks for using Employee Generator")
+    );
+   } 
+    
+   
   });
 
 }
@@ -130,11 +142,10 @@ function internQuestion(answers){
     console.log(internAnswer)
     //whatschool
     console.log(internAnswer.myschool)
-    var newGuy = new itern(answer.name, answer.id, answer.email, internAnswer.myschool);
-    employees.push(newGuy)
-    //if they say yes
-      //call start()
-    //if no more
+    var newIntern = new itern(answer.name, answer.id, answer.email, internAnswer.myschool);
+    employees.push(newIntern)
+    //if they say yes - DONE
+      //call start() if no more - Done
       // 3. completed building the team, will create an HTML file displays team rosterprovided by the user. 
   //call render(employees) 
   //buildit out on html (convert string)
@@ -161,8 +172,8 @@ function engineerQuestion(answers){
     console.log(engineerAnswer)
     //whatschool
     console.log(engineerAnswer.github)
-    var newGuy = new itern(answer.name, answer.id, answer.email, engineerAnswer.github);
-    employees.push(newGuy)
+    var newEngineer = new itern(answer.name, answer.id, answer.email, engineerAnswer.github);
+    employees.push(newEngineer)
     //if they say yes
       //call start()
     //if no more
@@ -170,6 +181,11 @@ function engineerQuestion(answers){
   //call render(employees) 
   //buildit out on html (convert string)
     //fs.write file(render(employees) ) to outpathPath
+    fs.writeFile(filename, employees, (err) =>
+      err
+        ? console.log(err)
+        : console.log("Success! Thanks for buildilng your Employee Files")
+    );
   });
 
 }
