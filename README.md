@@ -18,7 +18,7 @@ This application is covered by the Mozilla license.
 - [Questions](#questions)
 
 ## Installation
-💿 use node and run node index.js and answer a few questions
+💿 use node and run node app.js and answer a few questions about your employees to build out your Employee Organizer
 
 ## Contributing
 🤝 Myself (biaka) and many sources on the internet

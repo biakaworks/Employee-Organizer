@@ -27,22 +27,22 @@ function start(){
     {
       type: "input",
       name: "name",
-      message: "What is your name?",
+      message: "What is new employee's name?",
     },
     {
       type: "input",
       name: "id",
-      message: "What is your ID?",
+      message: "What is this employee's ID?",
     },
     {
       type: "input",
       name: "email",
-      message: "What is your email?",
+      message: "What is this employee's email?",
     },
     {
       type: "list",
       name: "role",
-      message: "What is your role?",
+      message: "What is this employee's role?",
       choices: [
         "Engineers",
         "Interns",
@@ -58,7 +58,7 @@ function start(){
   managerQuestion(answers)
  };
 
- if(answers.role =="Intern"){
+ if(answers.role =="Interns"){
   //role == intern
  internQuestion(answers)
 };
@@ -104,8 +104,8 @@ function managerQuestion(answer){
         : console.log("Success! Thanks for using Employee Generator")
     );
    } 
-    
-   
+
+
   });
 
 }
@@ -120,15 +120,15 @@ function internQuestion(answer){
   },
   {
     type: "confirm",
-    name: "areyoudone",
-    message: "Would you like to add another employee?",
+    name: "areYouDone",
+    message: "Are you done adding employees?",
   },
   ])
   .then(internAnswer => {
     console.log(internAnswer)
     //whatschool
     console.log(internAnswer.internSchool)
-    var newIntern = new itern(answer.name, answer.id, answer.email, internAnswer.internSchool);
+    var newIntern = new Intern(answer.name, answer.id, answer.email, internAnswer.internSchool);
     employees.push(newIntern)
     if(internAnswer.areYouDone == false){
       start()
@@ -156,14 +156,14 @@ function engineerQuestion(answer){
   },
   {
     type: "confirm",
-    name: "areyoudone",
-    message: "Would you like to add another employee?",
+    name: "areYouDone",
+    message: "Are you done adding employees?",
   },
   ])
   .then(engineerAnswer => {
     console.log(engineerAnswer)
     console.log(engineerAnswer.gitHub)
-    var newEngineer = new itern(answer.name, answer.id, answer.email, engineerAnswer.gitHub);
+    var newEngineer = new Engineer(answer.name, answer.id, answer.email, engineerAnswer.gitHub);
     employees.push(newEngineer)
     if(engineerAnswer.areYouDone == false){
       start()
@@ -178,3 +178,5 @@ function engineerQuestion(answer){
       } 
      });
     }
+
+    start();
