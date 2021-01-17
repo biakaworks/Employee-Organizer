@@ -53,11 +53,29 @@ function start(){
   .then(answers => {
  console.log(answers);
  if(answers.role =="Manager"){
-  mangerQuestion(answers)
+  managerQuestion(answers)
  }
+ 
      //role == manager
     //mangerQuestions(answers)
   });
+
+  .then(answers => {
+    console.log(answers);
+    if(answers.role =="Interns"){
+     internQuestion(answers)
+    }
+  });
+
+  .then(answers => {
+    console.log(answers);
+    if(answers.role =="Engineer"){
+     engineerQuestion(answers)
+    }
+    
+        //role == manager
+       //mangerQuestions(answers)
+     });
  
 
 
@@ -73,16 +91,77 @@ function mangerQuestion(answers){
   },
   {
     type: "confirm",
-    name: "areyoudone",
+    name: "areYouDone",
     message: "Would you like to add another employee?",
   },
-    /* ask if they are done? */
   ])
   .then(managerAnswer => {
     console.log(managerAnswer)
     //officenumber
-    console.log(managerAnswer.officeNumber)
+    console.log(managerAnswer.myofficeNumber)
     var newGuy = new Manager(answer.name, answer.id, answer.email, managerAnswer.officeNumber);
+    employees.push(newGuy)
+    //if they say yes
+      //call start()
+    //if no more
+      // 3. completed building the team, will create an HTML file displays team rosterprovided by the user. 
+  //call render(employees) 
+  //buildit out on html (convert string)
+    //fs.write file(render(employees) ) to outpathPath
+  });
+
+}
+
+function internQuestion(answers){
+  inquirer
+  .prompt([
+    {
+    type: "input",
+    name: "internSchool",
+    message: "What school did the intern attend?",
+  },
+  {
+    type: "confirm",
+    name: "areyoudone",
+    message: "Would you like to add another employee?",
+  },
+  ])
+  .then(internAnswer => {
+    console.log(internAnswer)
+    //whatschool
+    console.log(internAnswer.myschool)
+    var newGuy = new itern(answer.name, answer.id, answer.email, internAnswer.myschool);
+    employees.push(newGuy)
+    //if they say yes
+      //call start()
+    //if no more
+      // 3. completed building the team, will create an HTML file displays team rosterprovided by the user. 
+  //call render(employees) 
+  //buildit out on html (convert string)
+    //fs.write file(render(employees) ) to outpathPath
+  });
+
+}
+
+function engineerQuestion(answers){
+  inquirer
+  .prompt([
+    {
+    type: "input",
+    name: "gitHub",
+    message: "What is your GitHub account?",
+  },
+  {
+    type: "confirm",
+    name: "areyoudone",
+    message: "Would you like to add another employee?",
+  },
+  ])
+  .then(engineerAnswer => {
+    console.log(engineerAnswer)
+    //whatschool
+    console.log(engineerAnswer.github)
+    var newGuy = new itern(answer.name, answer.id, answer.email, engineerAnswer.github);
     employees.push(newGuy)
     //if they say yes
       //call start()
